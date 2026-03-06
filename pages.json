@@ -1,0 +1,58 @@
+{
+	"pages": [{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "租房助手"
+			}
+		},
+		{
+			"path": "pages/member/index",
+			"style": {
+				"navigationBarTitleText": "戳一戳"
+			}
+		},
+		{
+			"path": "pages/webview/webview",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		}
+	],
+	"subPackages": [{
+		"root": "pages/subPackages",
+		"pages": []
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "正在载入",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#F5F6FA"
+	},
+	"tabBar": {
+		"color": "#666666",
+		"selectedColor": "#333333",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "/static/tabBar/immortal.png",
+				"selectedIconPath": "/static/tabBar/immortal_select.png",
+				"text": "租房助手"
+			},
+			{
+				"pagePath": "pages/member/index",
+				"iconPath": "/static/tabBar/mine.png",
+				"selectedIconPath": "/static/tabBar/mine_select.png",
+				"text": "戳一戳"
+			}
+		]
+	},
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"ks-(.*)-(.*)": "@/components/ks/ks-$1-$2.vue",
+			"ks-(.*)": "@/components/ks/ks-$1.vue"
+		}
+	}
+}

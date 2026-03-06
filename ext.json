@@ -1,0 +1,11 @@
+{
+	"extEnable": false,
+	"extAppid": "wxe71f4cb5cfd3ec51",
+	"directCommit": false,
+	"ext": {},
+	"extPages": {},
+	"networkTimeout": {
+		"request": 10000,
+		"downloadFile": 10000
+	}
+}

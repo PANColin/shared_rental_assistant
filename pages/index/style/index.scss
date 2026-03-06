@@ -1,0 +1,83 @@
+.wrapper {
+	background: #f6f7fb;
+	min-height: 100vh;
+	padding: 24rpx;
+}
+
+/* 卡片 */
+
+.card {
+	background: #fff;
+	border-radius: 24rpx;
+	padding: 28rpx;
+	margin-bottom: 24rpx;
+	box-shadow: 0 6rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.title {
+	font-size: 30rpx;
+	font-weight: 600;
+	margin-bottom: 20rpx;
+	text-align: center;
+}
+
+/* 费用输入 */
+
+.row {
+	display: flex;
+	gap: 20rpx;
+	margin-bottom: 16rpx;
+}
+
+/* 人员 */
+
+.people-item {
+	display: flex;
+	align-items: center;
+	gap: 16rpx;
+	margin-bottom: 16rpx;
+}
+
+.name {
+	width: 110rpx;
+	font-size: 26rpx;
+	color: #666;
+}
+
+.add {
+	margin-top: 10rpx;
+}
+
+/* 结果 */
+
+.result-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20rpx 0;
+	border-bottom: 2rpx solid #f2f2f2;
+}
+
+.person {
+	font-size: 26rpx;
+	color: #555;
+}
+
+.money {
+	font-size: 34rpx;
+	font-weight: 600;
+	color: #3c7cff;
+}
+
+/* 免责声明 */
+
+.disclaimer {
+	background: #fffdf5;
+}
+
+.disclaimer .text {
+	font-size: 24rpx;
+	color: #888;
+	line-height: 38rpx;
+	margin-bottom: 10rpx;
+}

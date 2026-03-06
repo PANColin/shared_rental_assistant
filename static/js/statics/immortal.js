@@ -1,0 +1,17 @@
+export default {
+	propCenter: 'immortal/propCenter.png',
+	worshipGods: 'immortal/worshipGods.png',
+	distributeGoodLuck: 'immortal/distributeGoodLuck.png',
+	s1: 'immortal/s1.png',
+	s2: 'immortal/s2.png',
+	s3: 'immortal/s3.png',
+	s4: 'immortal/s4.png',
+	activetab: 'immortal/activetab.png',
+	topOfProps: 'immortal/topOfProps.png',
+	getRich: 'immortal/getRich.png',
+	tab: 'immortal/tab.png',
+	coin: 'immortal/coin.png',
+	immortalbgc: 'immortal/immortalbgc.png',
+	lockimmortal: 'immortal/lockimmortal.png',
+	propBackground: 'immortal/propBackground.png',
+}
