@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>合租费用分摊</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
+        }
+
+        body {
+            background: #f5f6fa;
+            padding: 12px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, .06);
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .row input {
+            flex: 1;
+            width: 60px;
+            padding: 9px;
+            border-radius: 8px;
+            border: 1px solid #e2e2e2;
+            font-size: 14px;
+        }
+
+        .people-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .people-item span {
+            width: 55px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .people-item input {
+            flex: 1;
+            padding: 9px;
+            border-radius: 8px;
+            border: 1px solid #e2e2e2;
+        }
+
+        .del {
+            width: 28px;
+            height: 28px;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ff4d4f;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        button.add {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background: #4e7cff;
+            color: #fff;
+            font-size: 14px;
+            margin-top: 6px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f2f2f2;
+            font-size: 14px;
+        }
+
+        .money {
+            font-weight: 600;
+            color: #4e7cff;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <div class="title">费用</div>
+
+        <div class="row">
+            <input id="rent" placeholder="房租">
+            <input id="fixed" placeholder="物业 / 网费">
+        </div>
+
+        <div class="row">
+            <input id="water" placeholder="水费">
+            <input id="gas" placeholder="燃气">
+        </div>
+
+        <div class="row">
+            <input id="power" placeholder="电费">
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="title">居住天数</div>
+
+        <div id="people"></div>
+
+        <button class="add" onclick="add()">+ 添加一个人</button>
+
+    </div>
+
+    <div class="card">
+
+        <div class="title">分摊结果</div>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+
+        let people = [""]
+
+        function add() {
+            people.push("")
+            render()
+        }
+
+        function del(i) {
+            people.splice(i, 1)
+            render()
+            calc()
+        }
+
+        function render() {
+
+            let html = ""
+
+            people.forEach((p, i) => {
+
+                html += `
+<div class="people-item">
+<span>第${i + 1}人</span>
+<input type="number"
+placeholder="住了多少天"
+value="${p}"
+oninput="people[${i}]=this.value;calc()">
+<button class="del" onclick="del(${i})">删</button>
+</div>
+`})
+            document.getElementById("people").innerHTML = html
+        }
+
+        function val(id) {
+            return Number(document.getElementById(id).value) || 0
+        }
+
+        document.querySelectorAll("input").forEach(i => {
+            i.addEventListener("input", calc)
+        })
+
+        function calc() {
+
+            let rent = val("rent")
+            let fixed = val("fixed")
+
+            let water = val("water")
+            let power = val("power")
+            let gas = val("gas")
+
+            let totalPersonDays = people.reduce((a, b) => a + Number(b || 0), 0)
+
+            let html = ""
+
+            people.forEach((d, i) => {
+
+                d = Number(d || 0)
+
+                let rentCost = totalPersonDays ? rent / totalPersonDays * d : 0
+                let fixedCost = totalPersonDays ? fixed / totalPersonDays * d : 0
+
+                let waterCost = totalPersonDays ? water / totalPersonDays * d : 0
+                let powerCost = totalPersonDays ? power / totalPersonDays * d : 0
+                let gasCost = totalPersonDays ? gas / totalPersonDays * d : 0
+
+                let total = rentCost + fixedCost + waterCost + powerCost + gasCost
+
+                html += `
+<div class="result-item">
+<span>第${i + 1}人</span>
+<span class="money">￥${total.toFixed(2)}</span>
+</div>
+`
+
+            })
+
+            document.getElementById("result").innerHTML = html
+
+        }
+
+        render()
+        calc()
+
+    </script>
+
+</body>
+
+</html>
